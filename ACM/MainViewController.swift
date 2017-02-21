@@ -24,15 +24,19 @@ class MainViewController: BaseViewController,  GIDSignInUIDelegate, GIDSignInDel
     @IBOutlet weak var meetingSignInBtn: UIButton!
     static var meetingSignInWaiting = false
     
+    @IBOutlet var imageview: UIImageView!
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         GIDSignIn.sharedInstance().uiDelegate = self
         generalLabel.text = "What is ACM?\nACM is the programming club at Rowan University. I don\'t know what else to put here so please open a pull request and add more info here.\n\nWhen do you meet?\nEvery Friday at 2–4 PM in Robinson 201 a/b."
         GIDSignIn.sharedInstance().signIn()
         
-        
+        fetchImage()
     }
     override func viewDidAppear(_ animated: Bool) {
         
@@ -138,8 +142,26 @@ class MainViewController: BaseViewController,  GIDSignInUIDelegate, GIDSignInDel
         signOutBtn.isHidden = true
         meetingSignInBtn.isHidden =  true
         signInLbl.isHidden = true
-        
-        
-        
+    }
+    
+    private func fetchImage() {
+        let imageURL = URL(string: "https://rowanacm.org/img/bannerBackgroundSmall.jpg")
+        var image: UIImage?
+        if let url = imageURL {
+            //All network operations has to run on different thread(not on main thread).
+            DispatchQueue.global(qos: .userInitiated).async {
+                let imageData = NSData(contentsOf: url)
+                //All UI operations has to run on main thread.
+                DispatchQueue.main.async {
+                    if imageData != nil {
+                        image = UIImage(data: imageData as! Data)
+                        self.imageview.image = image
+                        //self.imageview.sizeToFit()
+                    } else {
+                        image = nil
+                    }
+                }
+            }
+        }
     }
 }

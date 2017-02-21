@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,14 +51,14 @@
                                 </constraints>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOo-LH-hWx">
-                                <rect key="frame" x="132.5" y="272" width="109" height="30"/>
+                                <rect key="frame" x="133" y="272" width="109" height="30"/>
                                 <state key="normal" title="Meeting Sign-In"/>
                                 <connections>
                                     <action selector="meetingSignInPressed:" destination="Twr-Aw-zGJ" eventType="touchUpInside" id="z9J-QV-wq7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxp-E2-BVt">
-                                <rect key="frame" x="16" y="310" width="343" height="21"/>
+                                <rect key="frame" x="16" y="310" width="343" height="122"/>
                                 <string key="text">What is ACM?\nACM is the programming club at Rowan University. I don\'t know what else to put here so please open a pull request and add more info here.\n\nWhen do you meet?\nEvery Friday at 2–4 PM in Robinson 201 a/b.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -76,6 +77,13 @@
                                     <action selector="signOutBtnPressed:" destination="Twr-Aw-zGJ" eventType="touchUpInside" id="E4h-5u-Giq"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZ2-D4-zqx" userLabel="imageView">
+                                <rect key="frame" x="65" y="440" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Lsl-qN-O9d"/>
+                                    <constraint firstAttribute="width" secondItem="BZ2-D4-zqx" secondAttribute="height" multiplier="15:8" id="vSt-fb-xNi"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -100,6 +108,7 @@
                     <connections>
                         <outlet property="generalLabel" destination="dxp-E2-BVt" id="eII-cb-3vH"/>
                         <outlet property="googleSignInBtn" destination="V3b-7X-HVc" id="s9c-s9-HyT"/>
+                        <outlet property="imageview" destination="BZ2-D4-zqx" id="GVf-mL-iFk"/>
                         <outlet property="meetingSignInBtn" destination="tOo-LH-hWx" id="ofA-bl-FWU"/>
                         <outlet property="signInButton" destination="V3b-7X-HVc" id="AYd-Ip-XlQ"/>
                         <outlet property="signInLbl" destination="8D4-5x-43V" id="g66-YV-AmA"/>
